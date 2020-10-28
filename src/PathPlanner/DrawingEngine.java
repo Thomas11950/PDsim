@@ -124,6 +124,7 @@ public class DrawingEngine extends JApplet{
 	}
 	public void paint(Graphics g) {
 		super.paint(g);
+		paintUltimateGoalElements(g);
 		for(int i = 0; i < pathToDraw.path.size()-1; i++) {
 			if(!overAccel[i]) {
 				g.setColor(Color.black);
@@ -142,5 +143,15 @@ public class DrawingEngine extends JApplet{
 			}
 			}
 		}
+	}
+	public void paintUltimateGoalElements(Graphics g) {
+		int wobbleRadius = 3;
+		double ringRadius = 1.5;
+		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)( yTranslate-wobbleRadius*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
+		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)(-24*scaleFactor+ yTranslate-wobbleRadius*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
+		g.fillOval((int)(39*scaleFactor+xTranslate-ringRadius*scaleFactor),(int)(-12*scaleFactor+ yTranslate-ringRadius*scaleFactor), (int)(2*ringRadius*scaleFactor),(int)( 2*ringRadius*scaleFactor));
+		g.drawRect((int)(63*scaleFactor+xTranslate),(int)(yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
+		g.drawRect((int)(87*scaleFactor+xTranslate),(int)(-24*scaleFactor+yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
+		g.drawRect((int)(111*scaleFactor+xTranslate),(int)(yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
 	}
 }
