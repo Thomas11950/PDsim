@@ -29,7 +29,7 @@ public class DrawingEngine extends JApplet{
 	public double Vmax = 11;
 	public void init() {
 		double totalTime = 0;
-		pathToDraw = new Path("C:\\primitive data\\pointformatter\\PathPlanner\\src\\points11.txt");
+		pathToDraw = new Path("C:\\engineering\\robotics\\UGauto\\collect2ndWobblerStack2.txt");
 		arcs = new ArrayList<ArrayList<Point>>();
 		overAccel = new boolean[pathToDraw.path.size()-1];
 		Double[] angles = new Double[pathToDraw.path.size()-1];
@@ -133,13 +133,13 @@ public class DrawingEngine extends JApplet{
 				g.setColor(Color.red);
 			}
 			g.fillOval((int)(pathToDraw.path.get(i).X*scaleFactor)+xTranslate-5, -(int)(pathToDraw.path.get(i).Y*scaleFactor)+yTranslate-5, 10, 10);
-			g.drawLine((int)(pathToDraw.path.get(i).X * scaleFactor)+xTranslate,-(int)( pathToDraw.path.get(i).Y * scaleFactor)+yTranslate,(int)( pathToDraw.path.get(i+1).X * scaleFactor)+xTranslate,-(int) (pathToDraw.path.get(i+1).Y*scaleFactor)+yTranslate);
+			g.drawLine(-1*(int)(pathToDraw.path.get(i).X * scaleFactor)+xTranslate,-1*-(int)( pathToDraw.path.get(i).Y * scaleFactor)+yTranslate,-1*(int)( pathToDraw.path.get(i+1).X * scaleFactor)+xTranslate,-1*-(int) (pathToDraw.path.get(i+1).Y*scaleFactor)+yTranslate);
 		}
 		for(ArrayList<Point> arc: arcs) {
 			if(arc!=null) {
 			for(int i = 0; i < arc.size()-1; i++) {
 				g.setColor(Color.green);
-				g.drawLine((int)(arc.get(i).X*scaleFactor)+xTranslate,-(int) (arc.get(i).Y*scaleFactor)+yTranslate, (int)(arc.get(i+1).X*scaleFactor)+xTranslate, -(int)(arc.get(i+1).Y*scaleFactor)+yTranslate);
+				g.drawLine(-1*(int)(arc.get(i).X*scaleFactor)+xTranslate,-1*-(int) (arc.get(i).Y*scaleFactor)+yTranslate, -1*(int)(arc.get(i+1).X*scaleFactor)+xTranslate, -1*-(int)(arc.get(i+1).Y*scaleFactor)+yTranslate);
 			}
 			}
 		}
@@ -147,11 +147,12 @@ public class DrawingEngine extends JApplet{
 	public void paintUltimateGoalElements(Graphics g) {
 		int wobbleRadius = 3;
 		double ringRadius = 1.5;
-		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)( yTranslate-wobbleRadius*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
-		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)(-24*scaleFactor+ yTranslate-wobbleRadius*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
-		g.fillOval((int)(39*scaleFactor+xTranslate-ringRadius*scaleFactor),(int)(-12*scaleFactor+ yTranslate-ringRadius*scaleFactor), (int)(2*ringRadius*scaleFactor),(int)( 2*ringRadius*scaleFactor));
-		g.drawRect((int)(63*scaleFactor+xTranslate),(int)(yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
-		g.drawRect((int)(87*scaleFactor+xTranslate),(int)(-24*scaleFactor+yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
-		g.drawRect((int)(111*scaleFactor+xTranslate),(int)(yTranslate),(int)(24*scaleFactor),(int)(24*scaleFactor));
+		double offsetWithField = 30;
+		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)( yTranslate-wobbleRadius*scaleFactor+offsetWithField*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
+		g.fillOval((int)(15*scaleFactor+xTranslate-wobbleRadius*scaleFactor),(int)(-24*scaleFactor+ yTranslate-wobbleRadius*scaleFactor+offsetWithField*scaleFactor), (int)(2*wobbleRadius*scaleFactor),(int)( 2*wobbleRadius*scaleFactor));
+		g.fillOval((int)(39*scaleFactor+xTranslate-ringRadius*scaleFactor),(int)(-12*scaleFactor+ yTranslate-ringRadius*scaleFactor+offsetWithField*scaleFactor), (int)(2*ringRadius*scaleFactor),(int)( 2*ringRadius*scaleFactor));
+		g.drawRect((int)(63*scaleFactor+xTranslate),(int)(yTranslate+offsetWithField*scaleFactor),(int)(24*scaleFactor),(int)(24*scaleFactor));
+		g.drawRect((int)(87*scaleFactor+xTranslate),(int)(-24*scaleFactor+yTranslate+offsetWithField*scaleFactor),(int)(24*scaleFactor),(int)(24*scaleFactor));
+		g.drawRect((int)(111*scaleFactor+xTranslate),(int)(yTranslate+offsetWithField*scaleFactor),(int)(24*scaleFactor),(int)(24*scaleFactor));
 	}
 }

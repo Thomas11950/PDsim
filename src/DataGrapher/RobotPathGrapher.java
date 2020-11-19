@@ -16,16 +16,16 @@ public class RobotPathGrapher extends JApplet{
 	ArrayList<Double> targetYs;
 	Calendar c;
 	long startTime;
-	double graphFactor = 7;
+	double graphFactor = -7;
 	final double timeElapsedToGraph=5000;
-	int yTranslate = 350;
+	int yTranslate = 400;
 	public void init() {
 		c = Calendar.getInstance();
 		currentXs = new ArrayList<Double>();
 		currentYs = new ArrayList<Double>();
 		targetXs = new ArrayList<Double>();
 		targetYs = new ArrayList<Double>();
-		File fileContainingPoints = new File("C:\\primitive data\\pointformatter\\PointFormatterFF\\src\\RamseteMotionData.txt");
+		File fileContainingPoints = new File("C:\\engineering\\robotics\\ramsetemotiondata.txt");
         Scanner scnr;
         try {
             scnr = new Scanner(fileContainingPoints);
@@ -68,6 +68,7 @@ public class RobotPathGrapher extends JApplet{
 			g.drawLine((int)(currentXs.get(i)*graphFactor), (int)(currentYs.get(i)*graphFactor)+yTranslate, (int)(currentXs.get(i+1)*graphFactor), (int)(currentYs.get(i+1)*graphFactor)+yTranslate);
 			g.setColor(Color.blue);
 			g.drawLine((int)(targetXs.get(i)*graphFactor), (int)(targetYs.get(i)*graphFactor)+yTranslate, (int)(targetXs.get(i+1)*graphFactor), (int)(targetYs.get(i+1)*graphFactor)+yTranslate);
+			
 		}
 	}
 }

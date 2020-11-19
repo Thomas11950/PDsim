@@ -17,15 +17,16 @@ public class PIDgrapher extends JApplet implements KeyListener {
 	ArrayList<Double> times;
 	ArrayList<Double> velos;
 	ArrayList<Double> requestedVs;
-	public int xTranslate = 0;
-	public int yTranslate = -200;
+	public int xTranslate = 100;
+	public int yTranslate = 0;
 	double scaleFactor = 100;
+	double scaleFactory = 10;
 	public void init() {
 		times = new ArrayList<Double>();
 		velos = new ArrayList<Double>();
 		requestedVs = new ArrayList<Double>();
 		// TODO Auto-generated method stub
-		File fileContainingPoints = new File("C:\\primitive data\\pointformatter\\PointFormatterFF\\src\\PIDpoints.txt");
+		File fileContainingPoints = new File("C:\\engineering\\robotics\\RightVeloPIDdata.txt");
         Scanner scnr;
         try {
             scnr = new Scanner(fileContainingPoints);
@@ -94,9 +95,9 @@ public class PIDgrapher extends JApplet implements KeyListener {
 		g.drawLine(0, 300, 100, 300);
 		for(int i = 0; i < times.size() -1;i++) {
 			g.setColor(Color.green);
-			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(velos.get(i)*5.0)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(velos.get(i+1)*5.0)+500+yTranslate);
+			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(velos.get(i)*scaleFactory)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(velos.get(i+1)*scaleFactory)+500+yTranslate);
 			g.setColor(Color.blue);
-			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(requestedVs.get(i)*5.0)+500 + yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(requestedVs.get(i+1)*5.0)+500+yTranslate);
+			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(requestedVs.get(i)*scaleFactory)+500 + yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(requestedVs.get(i+1)*scaleFactory)+500+yTranslate);
 		}
 	}
 	@Override

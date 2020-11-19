@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class PointFormatterFF {
 
 	public static void main(String[] args) {
+		System.out.println("herro");
 		// TODO Auto-generated method stub
-		File fileContainingPoints = new File("C:\\primitive data\\pointformatter\\PointFormatterFF\\src\\FFpoints.txt");
+		File fileContainingPoints = new File("C:\\engineering\\robotics\\feedforwarddatageneric.txt");
         Scanner scnr;
         try {
             scnr = new Scanner(fileContainingPoints);

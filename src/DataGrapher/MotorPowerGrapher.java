@@ -25,7 +25,7 @@ public class MotorPowerGrapher extends JApplet implements KeyListener {
 		velos = new ArrayList<Double>();
 		requestedVs = new ArrayList<Double>();
 		// TODO Auto-generated method stub
-		File fileContainingPoints = new File("C:\\primitive data\\pointformatter\\PointFormatterFF\\src\\PIDpoints.txt");
+		File fileContainingPoints = new File("C:\\engineering\\robotics\\LeftVeloPID.txt");
         Scanner scnr;
         try {
             scnr = new Scanner(fileContainingPoints);

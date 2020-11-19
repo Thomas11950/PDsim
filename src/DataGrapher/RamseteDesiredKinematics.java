@@ -23,6 +23,7 @@ public class RamseteDesiredKinematics extends JApplet {
 	ArrayList<Double> veloCommands;
 	ArrayList<Double> desiredVelos;
 	ArrayList<Double> lateralVelos;
+	ArrayList<Double> angularVeloCommands;
 	public int xTranslate = 0;
 	public int yTranslate = -150;
 	double scaleFactor = 100;
@@ -38,8 +39,9 @@ public class RamseteDesiredKinematics extends JApplet {
 		veloCommands = new ArrayList<Double>();
 		desiredVelos = new ArrayList<Double>();
 		lateralVelos = new ArrayList<Double>();
+		angularVeloCommands = new ArrayList<Double>();
 		// TODO Auto-generated method stub
-		File fileContainingPoints = new File("C:\\primitive data\\pointformatter\\PointFormatterFF\\src\\ramsetedesiredkinematics.txt");
+		File fileContainingPoints = new File("C:\\engineering\\robotics\\ramsetedesiredkinematics.txt");
         Scanner scnr;
         try {
             scnr = new Scanner(fileContainingPoints);
@@ -56,6 +58,7 @@ public class RamseteDesiredKinematics extends JApplet {
         	double veloCommand = identifyNumberInString(pointInStringFormat, "VeloCommand: ");
         	double desiredVelo = identifyNumberInString(pointInStringFormat, "DesiredVelo: ");
         	double lateralVelo = identifyNumberInString(pointInStringFormat, "LateralVelo: ");
+        	double angularVeloCommand = identifyNumberInString(pointInStringFormat, "AngularVeloCommand: ");
         	times.add(time);
         	headings.add(heading);
         	currentHeadings.add(currentHeading);
@@ -63,6 +66,7 @@ public class RamseteDesiredKinematics extends JApplet {
         	veloCommands.add(veloCommand);
         	desiredVelos.add(desiredVelo);
         	lateralVelos.add(lateralVelo);
+        	angularVeloCommands.add(angularVeloCommand);
         }
         for(int i = 0; i < times.size()-1; i++) {
         	double derivative = (headings.get(i+1)-headings.get(i))/(times.get(i+1)-times.get(i));
@@ -76,7 +80,10 @@ public class RamseteDesiredKinematics extends JApplet {
 			g.setColor(Color.green);
 			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(headings.get(i)*yScaleFactor)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(headings.get(i+1)*yScaleFactor)+500+yTranslate);		
 			g.setColor(Color.black);
-			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(currentHeadings.get(i)*yScaleFactor)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(currentHeadings.get(i+1)*yScaleFactor)+500+yTranslate);		
+			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(currentHeadings.get(i)*yScaleFactor+4*Math.PI*yScaleFactor)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(currentHeadings.get(i+1)*yScaleFactor+4*Math.PI*yScaleFactor)+500+yTranslate);		
+			g.setColor(Color.blue);
+			g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(angularVeloCommands.get(i)*yScaleFactor)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(angularVeloCommands.get(i+1)*yScaleFactor)+500+yTranslate);		
+			
 			/*if(i < times.size()-2) {
 				g.setColor(Color.red);
 				g.drawLine((int)(times.get(i)*scaleFactor)+xTranslate, -(int)(derivatives.get(i)*yScaleFactor)+500+yTranslate, (int)(times.get(i+1)*scaleFactor)+xTranslate, -(int)(derivatives.get(i+1)*yScaleFactor)+500+yTranslate);		
